@@ -10,8 +10,20 @@ use App\Http\Controllers\ProductController;
 
 use App\Http\Controllers\CartController;
 
+use App\Http\Controllers\CheckoutController;
+
 
 Route :: get('/', [HomeController :: class, 'index'])->name('home');
+
+// Chi tiết sản phẩm (public)
+    Route::get('/products/{product}', [ProductController::class, 'show'])
+    ->name('products.show');
+
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+    Route::post('/cart/remove/{productId}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
 // Guest, Auth
 
@@ -23,16 +35,12 @@ Route::middleware('guest')->group(function(){
     
     Route::post('/register', [AuthController::class, 'register']);
 
-    // Chi tiết sản phẩm (public)
-    Route::get('/products/{product}', [ProductController::class, 'show'])
-    ->name('products.show');
+});
 
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
-    Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
-    Route::post('/cart/remove/{productId}', [CartController::class, 'remove'])->name('cart.remove');
-    Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
-
+Route::middleware('auth' )->group(function () {
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.show');
+    Route::post('/checkout', [CheckoutController::class, 'placeOrder' ])->name('checkout.place');
+    Route::get('/checkout/success/{orderId}', [CheckoutController::class, 'success'])->name('checkout.success');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])

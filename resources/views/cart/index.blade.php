@@ -113,7 +113,9 @@
         {{-- Nút đặt hàng: video sau --}}
         <div class="mt-4">
             @auth
-                <button class="btn btn-success" disabled>Thanh toán / Đặt hàng (Video sau)</button>
+                <a href="{{ route('checkout.show') }}" class="btn btn-success">
+                    Thanh toán / Đặt hàng
+                </a>
             @endauth
 
             @guest
