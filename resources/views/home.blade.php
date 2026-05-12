@@ -113,9 +113,10 @@
                             </p>
 
                             {{-- Nút tạm thời disabled, video sau sẽ làm chi tiết + giỏ hàng --}}
-                            <button class="btn btn-sm btn-outline-primary mt-auto" disabled>
-                                Xem chi tiết (sau)
-                            </button>
+                            <a class="btn btn-sm btn-outline-primary mt-auto"
+                                href="{{ route('products.show', $product)  }}">
+                                    Xem chi tiết
+                            </a>
                         </div>
 
                     </div>

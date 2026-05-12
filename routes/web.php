@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController; 
 
+use App\Http\Controllers\ProductController;
+
 Route :: get('/', [HomeController :: class, 'index'])->name('home');
 
 // Guest, Auth
@@ -17,12 +19,16 @@ Route::middleware('guest')->group(function(){
     Route::post('/login', [AuthController::class, 'login']);
     
     Route::post('/register', [AuthController::class, 'register']);
+
+    // Chi tiết sản phẩm (public)
+    Route::get('/products/{product}', [ProductController::class, 'show'])
+    ->name('products.show');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout')
     ->middleware('auth');
-    
+
     Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
