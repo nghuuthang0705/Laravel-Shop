@@ -57,7 +57,7 @@
                         <td>
                             @if ($product->image)
                                 <img
-                                    src="{{ $product->image }}"
+                                    src="{{ asset('storage/' . $product->image) }}"
                                     alt="{{ $product->name }}"
                                     style="width:60px;height:60px;object-fit:cover;"
                                 >

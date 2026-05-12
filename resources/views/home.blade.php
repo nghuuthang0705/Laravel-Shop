@@ -94,7 +94,7 @@
                     <div class="card h-100 shadow-sm">
 
                         @if ($product->image)
-                            <img src="{{ $product->image }}"
+                            <img src="{{ asset('storage/' . $product->image) }}"
                                 class="card-img-top"
                                 alt="{{ $product->name }}">
                         @endif

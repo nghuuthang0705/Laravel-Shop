@@ -13,31 +13,32 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.products.store') }}" method="POST" class="card card-body shadow-sm">
-    @csrf
+    <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" class="card card-body shadow-sm">
+        @csrf
 
-    <div class="mb-3">
-        <label class="form-label">Tên sản phẩm</label>
-        <input name="name" class="form-control" value="{{ old('name') }}" required>
-    </div>
+        <div class="mb-3">
+            <label class="form-label">Tên sản phẩm</label>
+            <input name="name" class="form-control" value="{{ old('name') }}" required>
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Giá (VND)</label>
-        <input type="number" name="price" class="form-control" value="{{ old('price') }}" min="0" required>
-    </div>
+        <div class="mb-3">
+            <label class="form-label">Giá (VND)</label>
+            <input type="number" name="price" class="form-control" value="{{ old('price') }}" min="0" required>
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Mô tả</label>
-        <textarea name="description" class="form-control" rows="4">{{ old('description') }}</textarea>
-    </div>
+        <div class="mb-3">
+            <label class="form-label">Mô tả</label>
+            <textarea name="description" class="form-control" rows="4">{{ old('description') }}</textarea>
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Link ảnh (URL)</label>
-        <input name="image" class="form-control" value="{{ old('image') }}">
-    </div>
+        <div class="mb-3">
+            <label class="form-label">Ảnh sản phẩm</label>
+            <input type="file" name="image" class="form-control" accept="image/*">
+            <div class="form-text">Chọn ảnh .jpg/.png/.webp... (tối đa 2MB)</div>
+        </div>
 
-    <button class="btn btn-primary" type="submit">Luu</button>
-        <a href="{{route('admin.products.index') }}" class="btn btn-link">Quay lại</a>
+        <button class="btn btn-primary" type="submit">Luu</button>
+            <a href="{{route('admin.products.index') }}" class="btn btn-link">Quay lại</a>
     </form>
 
 @endsection

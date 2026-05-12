@@ -22,8 +22,8 @@ Route::middleware('guest')->group(function(){
 Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout')
     ->middleware('auth');
-//Thêm các đường dẫn create, delete and update product
-Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
+    
+    Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/products', [AdminProductController::class, 'index'])->name('admin.products.index');

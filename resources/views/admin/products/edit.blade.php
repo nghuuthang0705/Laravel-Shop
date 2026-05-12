@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.products.update', $product) }}" method="POST" class="card card-body shadow-sm">
+    <form action="{{ route('admin.products.update', $product) }}" method="POST" enctype="multipart/form-data" class="card card-body shadow-sm">
     @csrf
     @method('PUT')
 
@@ -23,22 +23,36 @@
     </div>
 
     <div class="mb-3">
-    <label class="form-label">Giá (VND)</label>
-    <input type="number" name="price" class="form-control" value="{{ old('price', $product->price) }}" min="0" required>
+        <label class="form-label">Giá (VND)</label>
+        <input type="number" name="price" class="form-control" value="{{ old('price', $product->price) }}" min="0" required>
     </div>
 
     <div class="mb-3">
-    <label class="form-label">Mô tả</label>
-    <textarea name="description" class="form-control" rows="4">{{ old('description', $product->description) }}</textarea>
+        <label class="form-label">Mô tả</label>
+        <textarea name="description" class="form-control" rows="4">{{ old('description', $product->description) }}</textarea>
     </div>
 
     <div class="mb-3">
-    <label class="form-label">Link ảnh (URL)</label>
-    <input name="image" class="form-control" value="{{ old('image', $product->image) }}">
+        <label class="form-label">Ảnh hiện tại</label>
+        <div>
+            @if ($product->image)
+                <img src="{{ asset('storage/' . $product->image) }}"
+                    alt="{{ $product->name }}"
+                    style="width:120px;height :120px;object-fit: cover; border:1px solid #ddd; border-radius : 8px;">
+            @else
+                <div class="text-muted">Chưa có ảnh</div>
+            @endif
+        </div>
     </div>
+
+    <div class="mb-3">
+        <label class="form-label">Đổi ảnh (tùy chọn)</label>
+        <input type="file" name="image" class="form-control" accept="image/*">
+    </div>
+        
 
     <button class="btn btn-primary" type="submit">Lưu</button>
-    <a href="{{route('admin.products.index') }}" class="btn btn-link">Quay lại</a>
+        <a href="{{route('admin.products.index') }}" class="btn btn-link">Quay lại</a>
     </form>
 
 @endsection
