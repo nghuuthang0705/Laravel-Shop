@@ -44,18 +44,34 @@
                     </p>
             </div>
 
-            {{-- Nút giỏ hàng (để video sau làm) --}}
-            @auth
-                <button button clas="btn btn-primary me-2" disabled>
-                    Thêm vào giỏ hàng (Video sau)
-                </button>
+            {{-- Nút giỏ hàng --}}
+            <!-- @auth
+                <form action="{{ route('cart.add', $product) }}" method="POST" class="d-inline">
+                @csrf
+                    <input type="hidden" name="qty" value="1">
+                    <button class="btn btn-primary" type="submit">
+                        Thêm vào giỏ hàng
+                    </button>
+                </form>
+
+                <a href="{{ route('cart.index') }}" class="btn btn-outline-secondary ms-2">
+                    Xem giỏ hàng
+                </a>
             @endauth
 
             @guest
                 <a href="{{route('login') }}" class="btn btn-primary me-2">
                     Đăng nhập để mua
                 </a>
-            @endguest
+            @endguest -->
+
+            <form action="{{ route('cart.add', $product) }}" method="POST" class="d-inline">
+                @csrf
+                <input type="hidden" name="qty" value="1">
+                <button class="btn btn-primary" type="submit">
+                        Thêm vào giỏ hàng
+                </button>
+            </form>
 
             <a href="{{ route('home') }}" class="btn btn-outline-secondary">
                 Tiếp tục xem sản phẩm

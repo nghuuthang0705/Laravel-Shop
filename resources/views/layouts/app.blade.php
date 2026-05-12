@@ -39,6 +39,13 @@
                             <a class="nav-link" href="{{ route('register') }}">Đăng ký</a>
                         </li>
                     @endguest
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('cart.index') }}">
+                            Giỏ hàng ({{ count(session('cart', [])) }})
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>
