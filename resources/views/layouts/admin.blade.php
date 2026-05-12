@@ -62,7 +62,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="" 
-                                class="nav-link @if(request()->routeIs('admin.products .*')) active @endif">
+                                class="nav-link @if(request()->routeIs('admin.products.*')) active @endif">
                                 Quản lý sản phẩm
                             </a>
                         </li>
